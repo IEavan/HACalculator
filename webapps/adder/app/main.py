@@ -1,9 +1,12 @@
-from flask import Flask
+from flask import Flask, jsonify, request
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods=["POST"])
 def execute():
-    return "Bye my World"
+    if request.is_json:
+        data = request.get_json()
+        return jsonify(sum(data["terms"]))
+    return jsonify({"error":"request is not json"})
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=80)
+    app.run(host="0.0.0.0", port=8080)
