@@ -42,8 +42,9 @@ def execute():
                 "terms": [left, right]
         }
         response = requests.post(URLS[op], data=json.dumps(request_data))
+        print(response.status_code)
 
-        return jsonify(response.body)
+        return jsonify(response.content)
 
     return jsonify({"error":"Nothing to do"})
 
