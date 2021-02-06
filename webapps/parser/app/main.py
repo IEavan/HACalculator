@@ -41,7 +41,7 @@ def execute():
         request_data = {
                 "terms": [left, right]
         }
-        response = requests.post(URLS[op], data=json.dumps(request_data))
+        response = requests.post(URLS[op], json=request_data)
         print(response.status_code)
 
         return response.json()
