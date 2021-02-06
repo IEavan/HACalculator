@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: test-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: test
+        image: byrnedo/alpine-curl
+        command: ["curl", "-s", "http://test-service"]
+      restartPolicy: Never
+  backoffLimit: 4

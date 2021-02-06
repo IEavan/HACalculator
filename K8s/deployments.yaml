@@ -1,21 +1,43 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: adder
   labels:
-    app: test-nginx
+    app: adder
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: test-nginx
+      app: adder
   template:
     metadata:
       labels:
-        app: test-nginx
+        app: adder
     spec:
       containers:
-      - name: test-nginx
-        image: stravinskaiteg/hacalculator_test:v1
+      - name: adder
+        image: stravinskaiteg/hacalculator_test:adder
+        ports:
+        - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: parser
+  labels:
+    app: parser
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: parser
+  template:
+    metadata:
+      labels:
+        app: parser
+    spec:
+      containers:
+      - name: parser
+        image: stravinskaiteg/hacalculator_test:parser_v4
         ports:
         - containerPort: 80
