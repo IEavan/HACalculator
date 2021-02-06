@@ -38,6 +38,73 @@ spec:
     spec:
       containers:
       - name: parser
-        image: stravinskaiteg/hacalculator_test:parser_v4
+        image: stravinskaiteg/hacalculator_test:parser1
         ports:
         - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subtractor
+  labels:
+    app: subtractor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: subtractor
+  template:
+    metadata:
+      labels:
+        app: subtractor
+    spec:
+      containers:
+      - name: subtractor
+        image: stravinskaiteg/hacalculator_test:substractor
+        ports:
+        - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multiplier
+  labels:
+    app: multiplier
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: multiplier
+  template:
+    metadata:
+      labels:
+        app: multiplier
+    spec:
+      containers:
+      - name: multiplier
+        image: stravinskaiteg/hacalculator_test:multiplier
+        ports:
+        - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: divider
+  labels:
+    app: divider
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: divider
+  template:
+    metadata:
+      labels:
+        app: divider
+    spec:
+      containers:
+      - name: divider
+        image: stravinskaiteg/hacalculator_test:divider
+        ports:
+        - containerPort: 80
+        
